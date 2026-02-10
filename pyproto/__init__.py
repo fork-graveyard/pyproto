@@ -128,7 +128,7 @@ class ProtoWriter:
 
     def writeVarint(self, vint):
         vint = vint & 0xFFFFFFFF
-        while vint > 0x80:
+        while vint >= 0x80:
             self.write0((vint & 0x7F) | 0x80)
             vint >>= 7
         self.write0(vint & 0x7F)
